@@ -7,12 +7,16 @@
 # Q- Quit
 
 def main():
+    import sys
     menu_options = ["r", "c", "a", "m", "q"]
     total_items_list = []
     item_name_list, price_list, priority_list, required_or_completed_list = add_data_to_list()
-    total_items_list.append(item_name_list,price_list,priority_list,required_or_completed_list)
+    total_items_list.append(item_name_list)
+    total_items_list.append(price_list)
+    total_items_list.append(priority_list)
+    total_items_list.append(required_or_completed_list)
     print("Welcome to Shopping list by Janrich van Heerden")
-    print("items loaded from items")
+    print("{} items loaded from items.csv".format(len(total_items_list)))
     print(
         "Menu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit")
     menu_choice = menu(menu_options)
@@ -29,6 +33,9 @@ def main():
         elif menu_choice == "m":
             print("m is good")
             # list required items
+        elif menu_choice == "q":
+            sys.exit()#not sure if this is the right way to exit instead of using Break?
+
 
 
 def menu(menu_options):
@@ -46,7 +53,7 @@ def add_data_to_list():
     price_list = []
     priority_list = []
     required_or_completed_list = []
-    item_file = open("item.csv", "r")
+    item_file = open("items.csv", "r")
     for line in item_file:
         item_name, item_price, item_priority, required_or_completed = line.split(",")
         required_or_completed = required_or_completed[-4:-1]  # thanks to michael for showing me this formatting trick
