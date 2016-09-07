@@ -7,6 +7,7 @@
 # Q- Quit
 import sys
 
+
 def main():
     item_file = open("items.csv", "r")
     menu_options = ["r", "c", "a", "m", "q"]
@@ -18,7 +19,10 @@ def main():
     total_items_list.append(required_or_completed_list)
     print("Welcome to Shopping list by Janrich van Heerden")
     print("{} items loaded from items.csv".format(len(total_items_list)))
-    print(total_items_list)
+    print(total_items_list[3])
+    print(total_items_list[0])
+    print(total_items_list[1])
+    print(total_items_list[2])
     print(
         "Menu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit")
     menu_choice = menu(menu_options)
@@ -36,9 +40,8 @@ def main():
             print("m is good")
             # list required items
         elif menu_choice == "q":
-            sys.exit()#not sure if this is the right way to exit instead of using Break?
+            sys.exit()  # not sure if this is the right way to exit instead of using Break?
     item_file.close()
-
 
 
 def menu(menu_options):
@@ -48,14 +51,19 @@ def menu(menu_options):
     return menu_choice
 
 
-#def required_items(total_items_list):
-#    pass
-#    for thing in total_items_list:  #thing what variable is appropriate, we need the item
+def required_items(total_items_list):
+    price = 0
+    number_of_items = 0
+    for product in total_items_list:  # thing what variable is appropriate, we need the item
+        if total_items_list[3][number_of_items] == "r":
+            print("{}{}{}".format(total_items_list[0], total_items_list[2], total_items_list[3]))
+        number_of_items = +1
+        price = +total_items_list[1]
+    print("Total expected price for {} items: ${}".format(number_of_items,price))
 
 
 
-
-def add_data_to_list(item_file):
+def add_data_to_list(item_file):  # this function should allow any data added to be added to the item file
     item_name_list = []
     price_list = []
     priority_list = []
@@ -70,12 +78,11 @@ def add_data_to_list(item_file):
     return item_name_list, price_list, priority_list, required_or_completed_list
 
 
-
-#def completed_items(total_items_list):
+# def completed_items(total_items_list):
 #    pass
 #    for thing in total_items_list:
 
-#def add_new_item(item_file):
+# def add_new_item(item_file):
 #    pass
 # def mark_complete():
 #
