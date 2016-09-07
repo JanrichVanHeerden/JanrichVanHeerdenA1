@@ -35,8 +35,7 @@ def main():
             print("a is good")
             # add new item
         elif menu_choice == "m":
-            print("m is good")
-            # list required items
+            mark_complete(total_items_list)
         elif menu_choice == "q":
             sys.exit()  # not sure if this is the right way to exit instead of using Break?
         print(
@@ -59,10 +58,12 @@ def required_items(total_items_list):
     number_of_items = 0
     for product in total_items_list[1]:
         if total_items_list[3][number_of_items] == "r":
-            print("{}----{}-----{}".format(total_items_list[0][number_of_items], total_items_list[1][number_of_items], total_items_list[3][number_of_items]))
+            print("{}. {}----{}-----{}".format(number_of_items,total_items_list[0][number_of_items], total_items_list[1][number_of_items], total_items_list[3][number_of_items]))
             price += total_items_list[1][number_of_items]
         number_of_items += 1
-    print("Total expected price for {} items: ${}".format(number_of_items,price))   #HOW THE F**K DO I EXIT THIS LIST
+    print("Total expected price for {} items: ${}".format(number_of_items,price))
+    return number_of_items
+    #HOW THE F**K DO I EXIT THIS LIST
 
 
 
@@ -90,7 +91,7 @@ def completed_items(total_items_list):
     number_of_items = 0
     for product in total_items_list[1]:  # thing what variable is appropriate, we need the item
         if total_items_list[3][number_of_items] == "c":
-            print("{}----{}-----{}".format(total_items_list[0][number_of_items], total_items_list[1][number_of_items],
+            print("{}----{}-----{}".format(number_of_items,total_items_list[0][number_of_items], total_items_list[1][number_of_items],
                                            total_items_list[3][number_of_items]))
             c_in_list = True
             print("Total expected price for {} items: ${}".format(number_of_items, price))
@@ -100,9 +101,18 @@ def completed_items(total_items_list):
         print("No Completed Items")
 
 
-# def add_new_item(item_file):
-#    pass
-# def mark_complete():
-#
-# def compile_new_list():
+
+#def add_new_item(item_file):
+
+
+def mark_complete(total_items_list):
+    print("Enter the number of an item to mark complete")  #remove this it doesnt work
+    mark_item_complete = str(input(">>>"))
+
+# mark complete =  ask for item number,
+
+
+
+
+
 main()
