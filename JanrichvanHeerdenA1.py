@@ -11,7 +11,7 @@ def main():
     print("Welcome to Shopping list by Janrich van Heerden")
     print("items loaded from items")
     print("Menu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit")
-    menu_choice=str(input(">>> ").lower())
+    menu_choice = menu(menu_options)
     while menu_choice in menu_options:
         if menu_choice == "r":
             print("r is good")
@@ -25,17 +25,24 @@ def main():
         elif menu_choice == "m":
             print("m is good")
             #list required items
-            menu_choice = menu(menu_choice,menu_options)
 
-def menu(menu_choice,menu_options):
+
+def menu(menu_options):
+    menu_choice = str(input(">>> ").lower())
     while menu_choice not in menu_options:
         menu_choice=str(input("Please enter a valid input, r,c,a,m,q"))
     return menu_choice
 
 #def required_items():
 #
-#def list_data():
-#
+def add_data_to_list():
+  item_name_list = []
+  price_list = []
+  priority_list = []
+  required_or_completed_list = []
+  item_file = open("item.csv", "r")
+  
+
 #def completed_items():
 #
 #def add_new_item():
@@ -44,3 +51,4 @@ def menu(menu_choice,menu_options):
 #
 #def compile_new_list():
 main()
+
