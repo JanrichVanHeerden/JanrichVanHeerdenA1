@@ -5,18 +5,20 @@
 # A- Add new item
 # M- Mark an item completed
 # Q- Quit
+import sys
 
 def main():
-    import sys
+    item_file = open("items.csv", "r")
     menu_options = ["r", "c", "a", "m", "q"]
     total_items_list = []
-    item_name_list, price_list, priority_list, required_or_completed_list = add_data_to_list()
+    item_name_list, price_list, priority_list, required_or_completed_list = add_data_to_list(item_file)
     total_items_list.append(item_name_list)
     total_items_list.append(price_list)
     total_items_list.append(priority_list)
     total_items_list.append(required_or_completed_list)
     print("Welcome to Shopping list by Janrich van Heerden")
     print("{} items loaded from items.csv".format(len(total_items_list)))
+    print(total_items_list)
     print(
         "Menu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit")
     menu_choice = menu(menu_options)
@@ -35,6 +37,7 @@ def main():
             # list required items
         elif menu_choice == "q":
             sys.exit()#not sure if this is the right way to exit instead of using Break?
+    item_file.close()
 
 
 
@@ -45,15 +48,18 @@ def menu(menu_options):
     return menu_choice
 
 
-def required_items():
-    pass
-#this function will add data to a list
-def add_data_to_list():
+#def required_items(total_items_list):
+#    pass
+#    for thing in total_items_list:  #thing what variable is appropriate, we need the item
+
+
+
+
+def add_data_to_list(item_file):
     item_name_list = []
     price_list = []
     priority_list = []
     required_or_completed_list = []
-    item_file = open("items.csv", "r")
     for line in item_file:
         item_name, item_price, item_priority, required_or_completed = line.split(",")
         required_or_completed = required_or_completed[-4:-1]  # thanks to michael for showing me this formatting trick
@@ -61,15 +67,16 @@ def add_data_to_list():
         priority_list.append(item_priority)
         price_list.append(item_price)
         required_or_completed_list.append(required_or_completed)
-    item_file.close()
     return item_name_list, price_list, priority_list, required_or_completed_list
 
 
 
-# def completed_items():
-#
-# def add_new_item():
-#
+#def completed_items(total_items_list):
+#    pass
+#    for thing in total_items_list:
+
+#def add_new_item():
+#    pass
 # def mark_complete():
 #
 # def compile_new_list():
