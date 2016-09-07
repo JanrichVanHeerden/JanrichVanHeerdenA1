@@ -8,6 +8,9 @@
 
 def main():
     menu_options = ["r", "c", "a", "m", "q"]
+    total_items_list = []
+    item_name_list, price_list, priority_list, required_or_completed_list = add_data_to_list()
+    total_items_list.append(item_name_list,price_list,priority_list,required_or_completed_list)
     print("Welcome to Shopping list by Janrich van Heerden")
     print("items loaded from items")
     print(
@@ -35,9 +38,9 @@ def menu(menu_options):
     return menu_choice
 
 
-# def required_items():
-
-# this function will add data to a list
+def required_items():
+    pass
+#this function will add data to a list
 def add_data_to_list():
     item_name_list = []
     price_list = []
