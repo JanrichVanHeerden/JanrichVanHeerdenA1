@@ -39,6 +39,9 @@ def main():
             # list required items
         elif menu_choice == "q":
             sys.exit()  # not sure if this is the right way to exit instead of using Break?
+        print(
+            "Menu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit")
+        menu_choice = menu(menu_options)
     item_file.close()
 
 
@@ -54,14 +57,12 @@ def menu(menu_options):
 def required_items(total_items_list):
     price = 0
     number_of_items = 0
-    for product in total_items_list[1]:  # thing what variable is appropriate, we need the item
+    for product in total_items_list[1]:
         if total_items_list[3][number_of_items] == "r":
             print("{}----{}-----{}".format(total_items_list[0][number_of_items], total_items_list[1][number_of_items], total_items_list[3][number_of_items]))
             price += total_items_list[1][number_of_items]
-            number_of_items += 1
-        if len(total_items_list[1])< number_of_items: #HOW THE F*CK do i get it to stop looping???????????????????????????????????
-            break
-    print("Total expected price for {} items: ${}".format(number_of_items,price))
+        number_of_items += 1
+    print("Total expected price for {} items: ${}".format(number_of_items,price))   #HOW THE F**K DO I EXIT THIS LIST
 
 
 
