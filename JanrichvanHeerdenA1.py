@@ -75,7 +75,7 @@ def add_data_to_list(item_file):
 #    pass
 #    for thing in total_items_list:
 
-#def add_new_item():
+#def add_new_item(item_file):
 #    pass
 # def mark_complete():
 #
