@@ -52,12 +52,12 @@ def menu(menu_options):
     return menu_choice
 
 
-def required_items(total_items_list):
+def required_items(total_items_list):  #how do i sort so it prints on item priority while dynamically changing the item number
     price = 0
     number_of_items = 0
     for product in total_items_list[1]:
         if total_items_list[3][number_of_items] == "r":
-            print("{}. {:<20s}$   {:<6}({})".format(number_of_items,total_items_list[0][number_of_items], total_items_list[1][number_of_items],total_items_list[2][number_of_items]))
+            print("{}. {:<20s}$  {:<6.2f}({})".format(number_of_items,total_items_list[0][number_of_items], total_items_list[1][number_of_items],total_items_list[2][number_of_items]))
             price += total_items_list[1][number_of_items]
         number_of_items += 1
     print("Total expected price for {} items: ${}".format(number_of_items,price))
@@ -124,7 +124,7 @@ def mark_complete(total_items_list):
 # mark complete =  ask for item number,
 
 
-
+#save function
 
 
 main()
