@@ -6,11 +6,10 @@
 # M- Mark an item completed
 # Q- Quit
 
-import sys
 
 def main():
     item_file = open("items.csv", "r")
-    menu_options = ["r", "c", "a", "m", "q"]
+    menu_options = ["r", "c", "a", "m"]
     total_items_list = []   # just found out split lists wrong, something to do with attributes, thanks trevor
     item_name_list, price_list, priority_list, required_or_completed_list = add_data_to_list(
         item_file)
@@ -28,8 +27,7 @@ def main():
     print(
         "Menu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit")
     menu_choice = menu(menu_options)
-
-    while menu_choice in menu_options:
+    while menu_choice in menu_options and menu_choice != "q":
         if menu_choice == "r":
             required_items(total_items_list)
         elif menu_choice == "c":
@@ -39,19 +37,16 @@ def main():
         elif menu_choice == "m":
             required_items(total_items_list)
             mark_complete(total_items_list)
-        elif menu_choice == "q":
-            save_to_list(total_items_list)
-            sys.exit()
-             # not sure if this is the right way to exit instead of using Break?
         print(
             "Menu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit")
         menu_choice = menu(menu_options)
+    save_to_list(total_items_list)
 
 
 
 def menu(menu_options):
     menu_choice = str(input(">>> ").lower())
-    while menu_choice not in menu_options:
+    while menu_choice not in menu_options and menu_choice != "q":
         menu_choice = str(input(
             "Invalid Menu Choice\nMenu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit"))
     return menu_choice
@@ -73,7 +68,7 @@ def required_items(
 
 
 def add_data_to_list(
-        item_file):  # this function should allow any data added to be added to the item file, splitting the lists
+        item_file):  # splitting the lists. This fucntion incorrectly splits the lists into parallel lists. In hindsight this seemed correct as splitting the code later to add the prices seemed redundent
     item_name_list = []
     price_list = []
     priority_list = []
@@ -122,6 +117,7 @@ def mark_complete(total_items_list):
     print("Enter the number of an item to mark complete")
     mark_item_complete = int(input(">>>"))
     total_items_list[3][mark_item_complete] = "c"
+    print("{} marked as complete.".format(total_items_list[0][mark_item_complete]))
 
 
 def save_to_list(total_items_list): #open to file as write only then writing to it
