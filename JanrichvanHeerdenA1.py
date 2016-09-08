@@ -19,10 +19,10 @@ def main():
     total_items_list.append(required_or_completed_list)
     print("Welcome to Shopping list by Janrich van Heerden")
     print("{} items loaded from items.csv".format(len(total_items_list)))
-    #print(total_items_list[3])
-    #print(total_items_list[0])
-    #print(total_items_list[1])
-    #print(total_items_list[2])
+    print(total_items_list[0])
+    print(total_items_list[1])
+    print(total_items_list[2])
+    print(total_items_list[3])
     print(
         "Menu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit")
     menu_choice = menu(menu_options)
@@ -106,8 +106,13 @@ def completed_items(total_items_list):
 
 
 def mark_complete(total_items_list):
-    print("Enter the number of an item to mark complete")  #remove this it doesnt work
-    mark_item_complete = str(input(">>>"))
+    list(enumerate(total_items_list))
+    print("Enter the number of an item to mark complete")
+    mark_item_complete = int(input(">>>"))
+    if mark_item_complete in total_items_list:
+        total_items_list[3][mark_item_complete] == "c"
+    print("{} marked as completed".format(total_items_list[0]))
+
 
 # mark complete =  ask for item number,
 
