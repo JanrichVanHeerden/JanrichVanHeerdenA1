@@ -5,21 +5,22 @@
 # A- Add new item
 # M- Mark an item completed
 # Q- Quit
-import sys
 
+import sys
 
 def main():
     item_file = open("items.csv", "r")
     menu_options = ["r", "c", "a", "m", "q"]
-    total_items_list = []
+    total_items_list = []   # just found out split lists wrong, something to do with attributes, thanks trevor
     item_name_list, price_list, priority_list, required_or_completed_list = add_data_to_list(
-        item_file)  # just found out split lists wrong, something to do with attributes, thanks trevor
+        item_file)
+    item_file.close()
     total_items_list.append(item_name_list)
     total_items_list.append(price_list)
     total_items_list.append(priority_list)
     total_items_list.append(required_or_completed_list)
     print("Welcome to Shopping list by Janrich van Heerden")
-    print("{} items loaded from items.csv".format(len(total_items_list)))
+    print("{} items loaded from items.csv".format(len(total_items_list[0])))
     print(total_items_list[0])
     print(total_items_list[1])
     print(total_items_list[2])
@@ -27,6 +28,7 @@ def main():
     print(
         "Menu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit")
     menu_choice = menu(menu_options)
+
     while menu_choice in menu_options:
         if menu_choice == "r":
             required_items(total_items_list)
@@ -39,11 +41,12 @@ def main():
             mark_complete(total_items_list)
         elif menu_choice == "q":
             save_to_list(total_items_list)
-            sys.exit()  # not sure if this is the right way to exit instead of using Break?
+            sys.exit()
+             # not sure if this is the right way to exit instead of using Break?
         print(
             "Menu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit")
         menu_choice = menu(menu_options)
-    item_file.close()
+
 
 
 def menu(menu_options):
@@ -124,12 +127,12 @@ def mark_complete(total_items_list):
 def save_to_list(total_items_list): #open to file as write only then writing to it
     item_file = open("items.csv", "w")
     number_of_items = 0
-    for lines in item_file:
+    for lines in total_items_list[0]:
         print("{},{},{},{}".format(total_items_list[0][number_of_items], total_items_list[1][number_of_items],
-                                   total_items_list[2][number_of_items], [total_items_list[3][number_of_items]]),
+                                   total_items_list[2][number_of_items], total_items_list[3][number_of_items]),
               file=item_file)
         number_of_items += 1
-    print("{} items saved to items.csv".format(len(total_items_list)))
+    print("{} items saved to items.csv".format(len(total_items_list[0])))
 
 
 main()
