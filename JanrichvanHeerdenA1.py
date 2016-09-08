@@ -121,7 +121,7 @@ def mark_complete(total_items_list):
     total_items_list[3][mark_item_complete] = "c"
 
 
-def save_to_list(total_items_list):
+def save_to_list(total_items_list): #open to file as write only then writing to it
     item_file = open("items.csv", "w")
     number_of_items = 0
     for lines in item_file:
