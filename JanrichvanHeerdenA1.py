@@ -57,12 +57,11 @@ def required_items(total_items_list):
     number_of_items = 0
     for product in total_items_list[1]:
         if total_items_list[3][number_of_items] == "r":
-            print("{}. {}----{}-----{}".format(number_of_items,total_items_list[0][number_of_items], total_items_list[1][number_of_items], total_items_list[3][number_of_items]))
+            print("{}. {:<20s}$   {:<6}({})".format(number_of_items,total_items_list[0][number_of_items], total_items_list[1][number_of_items],total_items_list[2][number_of_items]))
             price += total_items_list[1][number_of_items]
         number_of_items += 1
     print("Total expected price for {} items: ${}".format(number_of_items,price))
     return number_of_items
-    #HOW THE F**K DO I EXIT THIS LIST
 
 
 
@@ -88,7 +87,7 @@ def completed_items(total_items_list):
     c_in_list = False
     price = 0
     number_of_items = 0
-    for product in total_items_list[1]:  # thing what variable is appropriate, we need the item
+    for product in total_items_list[1]:
         if total_items_list[3][number_of_items] == "c":
             print("{}----{}-----{}".format(number_of_items,total_items_list[0][number_of_items], total_items_list[1][number_of_items],
                                            total_items_list[3][number_of_items]))
@@ -102,9 +101,9 @@ def completed_items(total_items_list):
 
 
 def add_new_item(total_items_list):
-    item_name= input("Item name: ")
-    item_price= input("Item price:$ ")
-    item_priority= input("Item priority: ")
+    item_name= str(input("Item name: "))
+    item_price= float(input("Item price:$ "))
+    item_priority= int(input("Item priority: "))
     required_or_completed= "r"
     print("{}, ${} (priority {}) added to shopping list.".format(item_name,item_price,item_priority))
     total_items_list[0].append(item_name)
