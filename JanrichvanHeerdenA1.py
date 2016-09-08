@@ -34,6 +34,7 @@ def main():
         elif menu_choice == "a":
             add_new_item(total_items_list)
         elif menu_choice == "m":
+            required_items(total_items_list)
             mark_complete(total_items_list)
         elif menu_choice == "q":
             sys.exit()  # not sure if this is the right way to exit instead of using Break?
@@ -89,8 +90,9 @@ def completed_items(total_items_list):
     number_of_items = 0
     for product in total_items_list[1]:
         if total_items_list[3][number_of_items] == "c":
-            print("{}----{}-----{}".format(number_of_items,total_items_list[0][number_of_items], total_items_list[1][number_of_items],
-                                           total_items_list[3][number_of_items]))
+            print("{}. {:<20s}$  {:<6.2f}({})".format(number_of_items, total_items_list[0][number_of_items],
+                                                      total_items_list[1][number_of_items],
+                                                      total_items_list[2][number_of_items]))
             c_in_list = True
             print("Total expected price for {} items: ${}".format(number_of_items, price))
             price += total_items_list[1][number_of_items]
@@ -116,12 +118,9 @@ def add_new_item(total_items_list):
 
 
 def mark_complete(total_items_list):
-    pass
-    #print("Enter the number of an item to mark complete")
-   # mark_item_complete = int(input(">>>"))
-
-
-# mark complete =  ask for item number,
+    print("Enter the number of an item to mark complete")
+    mark_item_complete = int(input(">>>"))
+    total_items_list[3][mark_item_complete] = "c"
 
 
 #save function
