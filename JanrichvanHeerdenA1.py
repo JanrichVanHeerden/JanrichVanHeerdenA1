@@ -12,7 +12,8 @@ def main():
     item_file = open("items.csv", "r")
     menu_options = ["r", "c", "a", "m", "q"]
     total_items_list = []
-    item_name_list, price_list, priority_list, required_or_completed_list = add_data_to_list(item_file)
+    item_name_list, price_list, priority_list, required_or_completed_list = add_data_to_list(
+        item_file)  # just found out split lists wrong, something to do with attributes, thanks trevor
     total_items_list.append(item_name_list)
     total_items_list.append(price_list)
     total_items_list.append(priority_list)
@@ -37,6 +38,7 @@ def main():
             required_items(total_items_list)
             mark_complete(total_items_list)
         elif menu_choice == "q":
+            save_to_list(total_items_list)
             sys.exit()  # not sure if this is the right way to exit instead of using Break?
         print(
             "Menu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit")
@@ -44,31 +46,31 @@ def main():
     item_file.close()
 
 
-
-
 def menu(menu_options):
     menu_choice = str(input(">>> ").lower())
     while menu_choice not in menu_options:
-        menu_choice = str(input("Please enter a valid input, r,c,a,m,q"))
+        menu_choice = str(input(
+            "Invalid Menu Choice\nMenu:\nR - List required items\nC - List completed items\nA - add new item\nM - Mark an item completed\nQ - Quit"))
     return menu_choice
 
 
-def required_items(total_items_list):  #how do i sort so it prints on item priority while dynamically changing the item number
+def required_items(
+        total_items_list):  # how do i sort so it prints on item priority while dynamically changing the item number
     price = 0
     number_of_items = 0
     for product in total_items_list[1]:
         if total_items_list[3][number_of_items] == "r":
-            print("{}. {:<20s}$  {:<6.2f}({})".format(number_of_items,total_items_list[0][number_of_items], total_items_list[1][number_of_items],total_items_list[2][number_of_items]))
+            print("{}. {:<20s}$  {:<6.2f}({})".format(number_of_items, total_items_list[0][number_of_items],
+                                                      total_items_list[1][number_of_items],
+                                                      total_items_list[2][number_of_items]))
             price += total_items_list[1][number_of_items]
         number_of_items += 1
-    print("Total expected price for {} items: ${}".format(number_of_items,price))
+    print("Total expected price for {} items: ${}".format(number_of_items, price))
     return number_of_items
 
 
-
-
-
-def add_data_to_list(item_file):  # this function should allow any data added to be added to the item file, splitting the lists
+def add_data_to_list(
+        item_file):  # this function should allow any data added to be added to the item file, splitting the lists
     item_name_list = []
     price_list = []
     priority_list = []
@@ -97,24 +99,20 @@ def completed_items(total_items_list):
             print("Total expected price for {} items: ${}".format(number_of_items, price))
             price += total_items_list[1][number_of_items]
         number_of_items += 1
-    if c_in_list == False:  #better way to do this?
+    if c_in_list == False:  # better way to do this?
         print("No Completed Items")
 
 
-
 def add_new_item(total_items_list):
-    item_name= str(input("Item name: "))
-    item_price= float(input("Item price:$ "))
-    item_priority= int(input("Item priority: "))
-    required_or_completed= "r"
-    print("{}, ${} (priority {}) added to shopping list.".format(item_name,item_price,item_priority))
+    item_name = str(input("Item name: "))
+    item_price = float(input("Item price:$ "))
+    item_priority = int(input("Item priority: "))
+    required_or_completed = "r"
+    print("{}, ${} (priority {}) added to shopping list.".format(item_name, item_price, item_priority))
     total_items_list[0].append(item_name)
     total_items_list[1].append(item_price)
     total_items_list[2].append(item_priority)
     total_items_list[3].append(required_or_completed)
-
-
-
 
 
 def mark_complete(total_items_list):
@@ -123,7 +121,15 @@ def mark_complete(total_items_list):
     total_items_list[3][mark_item_complete] = "c"
 
 
-#save function
+def save_to_list(total_items_list):
+    item_file = open("items.csv", "w")
+    number_of_items = 0
+    for lines in item_file:
+        print("{},{},{},{}".format(total_items_list[0][number_of_items], total_items_list[1][number_of_items],
+                                   total_items_list[2][number_of_items], [total_items_list[3][number_of_items]]),
+              file=item_file)
+        number_of_items += 1
+    print("{} items saved to items.csv".format(len(total_items_list)))
 
 
 main()
