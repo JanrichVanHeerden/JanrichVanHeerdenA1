@@ -32,8 +32,7 @@ def main():
         elif menu_choice == "c":
             completed_items(total_items_list)
         elif menu_choice == "a":
-            print("a is good")
-            # add new item
+            add_new_item(total_items_list)
         elif menu_choice == "m":
             mark_complete(total_items_list)
         elif menu_choice == "q":
@@ -69,7 +68,7 @@ def required_items(total_items_list):
 
 
 
-def add_data_to_list(item_file):  # this function should allow any data added to be added to the item file
+def add_data_to_list(item_file):  # this function should allow any data added to be added to the item file, splitting the lists
     item_name_list = []
     price_list = []
     priority_list = []
@@ -102,16 +101,25 @@ def completed_items(total_items_list):
 
 
 
-#def add_new_item(item_file):
+def add_new_item(total_items_list):
+    item_name= input("Item name: ")
+    item_price= input("Item price:$ ")
+    item_priority= input("Item priority: ")
+    required_or_completed= "r"
+    print("{}, ${} (priority {}) added to shopping list.".format(item_name,item_price,item_priority))
+    total_items_list[0].append(item_name)
+    total_items_list[1].append(item_price)
+    total_items_list[2].append(item_priority)
+    total_items_list[3].append(required_or_completed)
+
+
+
 
 
 def mark_complete(total_items_list):
-    list(enumerate(total_items_list))
-    print("Enter the number of an item to mark complete")
-    mark_item_complete = int(input(">>>"))
-    if mark_item_complete in total_items_list:
-        total_items_list[3][mark_item_complete] == "c"
-    print("{} marked as completed".format(total_items_list[0]))
+    pass
+    #print("Enter the number of an item to mark complete")
+   # mark_item_complete = int(input(">>>"))
 
 
 # mark complete =  ask for item number,
